@@ -120,7 +120,7 @@ function get-azureResGroup
   )
   # Get Resource Groups
   $resGrpWeblist = "https://management.azure.com/subscriptions/$subid/resourcegroups?api-version=2016-09-01"
-  $ResGovlist = (Invoke-RestMethod -Headers @{Authorization = "Bearer $token"} -uri $resGrpWeblist -Method Get).value
+  (Invoke-RestMethod -Headers @{Authorization = "Bearer $token"} -uri $resGrpWeblist -Method Get).value
 }
 
 function add-azureResGrp
@@ -141,7 +141,7 @@ function add-azureResGrp
     $vmregions
   )
   # New Resource Group
-  $NewresGrpWeb = "https://management.azure.com/subscriptions/$subid)/resourcegroups/$($ResGrpName)?api-version=2016-09-01"
+  $NewresGrpWeb = "https://management.azure.com/subscriptions/$subid/resourcegroups/$($ResGrpName)?api-version=2016-09-01"
   $newResGovbody = @"
 {"Location":"$vmregions",
 "name":"$($ResGrpName)"}
